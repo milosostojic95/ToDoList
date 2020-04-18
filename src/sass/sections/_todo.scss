@@ -16,6 +16,11 @@
     position: relative;
     overflow: hidden;
 
+    &:hover::after {
+        background: white;
+        color: #ff6fff;
+      }
+
     &:after {
       content: '\25BC';
       position: absolute;
@@ -25,6 +30,9 @@
       right: 0;
       pointer-events: none;
       padding: 1rem;
+      transition: all .3s ease;
+
+
     }
   }
 }
