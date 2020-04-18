@@ -21,7 +21,6 @@
     list-style: none;
 
     .todo {
-      min-width: 40%;
       background: white;
       margin: .5rem;
       display: flex;
@@ -31,6 +30,9 @@
       .todo-item {
         color: black;
         flex: 1;
+        padding: 0rem 3rem 0 .5rem;
+        font-size: 1.3rem;
+
       }
     }
   }
