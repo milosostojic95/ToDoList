@@ -1,0 +1,13 @@
+.form {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .todo-input {
+    border: none;
+    padding: .5rem;
+    font-size: 2rem;
+    background: white;
+  }
+}

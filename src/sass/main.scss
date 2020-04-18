@@ -1,6 +1,12 @@
 @import './variables/variables';
-
 @import './base/base';
 
-@import './sections/hero';
+// layouts
+@import './layouts/header';
+
+//componets
+@import './components/buttons';
+
+//sections
+@import './sections/todo';
 
