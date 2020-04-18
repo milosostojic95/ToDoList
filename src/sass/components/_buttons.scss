@@ -4,6 +4,32 @@
   font-size: 2rem;
   background: white;
   border-left: 1px solid grey;
-  color: grey;
+  color: #fda085;
+  cursor: pointer;
+  transition: all .3s ease;
+
+  &:hover {
+    color: white;
+    background: grey;
+  }
+}
+
+.complete-btn {
+  color: white;
+  border: none;
+  padding: .5rem;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  background: rgb(96, 202, 96);
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: rgb(236, 119, 41);
+  text-transform: uppercase;
+  color: white;
+  border: none;
+  padding: .5rem;
+  font-size: 1.2rem;
   cursor: pointer;
 }

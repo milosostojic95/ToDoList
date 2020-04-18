@@ -11,3 +11,27 @@
     background: white;
   }
 }
+
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .todo-list {
+    list-style: none;
+
+    .todo {
+      min-width: 40%;
+      background: white;
+      margin: .5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .todo-item {
+        color: black;
+        flex: 1;
+      }
+    }
+  }
+}
