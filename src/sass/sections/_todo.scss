@@ -7,8 +7,25 @@
   .todo-input {
     border: none;
     padding: .5rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     background: white;
+  }
+
+  .select {
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+
+    &:after {
+      content: '\25BC';
+      position: absolute;
+      background: #ff6fff;
+      top: 0;
+      color: white;
+      right: 0;
+      pointer-events: none;
+      padding: 1rem;
+    }
   }
 }
 
@@ -26,12 +43,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: all 1s ease;
+      min-width: 30%;
 
       .todo-item {
         color: black;
         flex: 1;
         padding: 0rem 3rem 0 .5rem;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
       }
     }
   }

@@ -23,11 +23,11 @@ function addTodo(event) {
   todoDiv.appendChild(newTodo);
   // cocheck mark button
   const completedButton = document.createElement('button');
-  completedButton.innerText = 'done';
+  completedButton.innerText = '+';
   completedButton.classList.add('complete-btn');
   todoDiv.appendChild(completedButton);
   const deletedButton = document.createElement('button');
-  deletedButton.innerText = 'deleted';
+  deletedButton.innerText = '-';
   deletedButton.classList.add('delete-btn');
   todoDiv.appendChild(deletedButton);
   // APPEND TO TODOLIST
@@ -42,7 +42,10 @@ function deleteCheck(e) {
   const item = e.target;
   if(item.classList[0] === 'delete-btn') {
     const todo = item.parentElement;
-    todo.remove();
+    todo.classList.add('fall');
+    todo.addEventListener('transitionend', () =>{
+      todo.remove();
+    });
   }
   if(item.classList[0] === 'complete-btn') {
     const todo = item.parentElement;
