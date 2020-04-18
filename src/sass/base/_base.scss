@@ -9,3 +9,8 @@ body {
   color: white;
   min-height: 100vh;
 }
+
+.completed {
+  text-decoration: line-through;
+  opacity: .5;
+}
