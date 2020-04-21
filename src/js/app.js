@@ -7,6 +7,7 @@ const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
 
 // Events
+document.addEventListener('DOMContentLoaded', getTodos);
 todoButton.addEventListener('click',addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
@@ -111,8 +112,6 @@ function getTodos() {
     newTodo.innerText = todo;
     newTodo.classList.add('todo-item');
     todoDiv.appendChild(newTodo);
-    // add todo to localstorage
-    saveLocalTodos(todoInput.value);
     // cocheck mark button
     const completedButton = document.createElement('button');
     completedButton.innerText = '+';
