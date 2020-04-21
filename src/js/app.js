@@ -24,6 +24,8 @@ function addTodo(event) {
   newTodo.innerText = todoInput.value;
   newTodo.classList.add('todo-item');
   todoDiv.appendChild(newTodo);
+  // add todo to localstorage
+  saveLocalTodos(todoInput.value);
   // cocheck mark button
   const completedButton = document.createElement('button');
   completedButton.innerText = '+';
@@ -57,8 +59,8 @@ function deleteCheck(e) {
 }
 
 function filterTodo(e) {
-  const todoItems = document.querySelectorAll('.todo');
-  todoItems.forEach((todo) => {
+  const todos = document.querySelectorAll('.todo');
+  todos.forEach((todo) => {
     switch(e.target.value) {
       case 'all':
         todo.style.display = 'flex';
@@ -81,3 +83,46 @@ function filterTodo(e) {
   })
 }
 
+function saveLocalTodos(todo) {
+  //check if i already have thins in there?
+  let todos;
+  if(localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+  todos.push(todo);
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function getTodos() {
+  let todos;
+  if(localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+  todos.forEach((todo) => {
+    const todoDiv = document.createElement('div');
+    // add class
+    todoDiv.classList.add('todo');
+    //cretae li
+    const newTodo =document.createElement('li');
+    newTodo.innerText = todo;
+    newTodo.classList.add('todo-item');
+    todoDiv.appendChild(newTodo);
+    // add todo to localstorage
+    saveLocalTodos(todoInput.value);
+    // cocheck mark button
+    const completedButton = document.createElement('button');
+    completedButton.innerText = '+';
+    completedButton.classList.add('complete-btn');
+    todoDiv.appendChild(completedButton);
+    const deletedButton = document.createElement('button');
+    deletedButton.innerText = '-';
+    deletedButton.classList.add('delete-btn');
+    todoDiv.appendChild(deletedButton);
+    // APPEND TO TODOLIST
+    todoList.appendChild(todoDiv);
+  })
+}

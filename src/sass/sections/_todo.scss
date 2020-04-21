@@ -18,13 +18,13 @@
 
     &:hover::after {
         background: white;
-        color: #ff6fff;
+        color: #fda085;
       }
 
     &:after {
       content: '\25BC';
       position: absolute;
-      background: #ff6fff;
+      background: #fda085;
       top: 0;
       color: white;
       right: 0;
