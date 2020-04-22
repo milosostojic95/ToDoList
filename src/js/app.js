@@ -57,6 +57,7 @@ function deleteCheck(e) {
   if(item.classList.contains('complete-btn')) {
     const todo = item.parentElement;
     todo.classList.toggle('completed');
+    isCheck();
   }
 }
 
@@ -105,25 +106,48 @@ function getTodos() {
     todos = JSON.parse(localStorage.getItem('todos'));
   }
   todos.forEach((todo) => {
-    const todoDiv = document.createElement('div');
-    // add class
-    todoDiv.classList.add('todo');
-    //cretae li
-    const newTodo =document.createElement('li');
-    newTodo.innerText = todo;
-    newTodo.classList.add('todo-item');
-    todoDiv.appendChild(newTodo);
-    // cocheck mark button
-    const completedButton = document.createElement('button');
-    completedButton.innerText = '+';
-    completedButton.classList.add('complete-btn');
-    todoDiv.appendChild(completedButton);
-    const deletedButton = document.createElement('button');
-    deletedButton.innerText = '-';
-    deletedButton.classList.add('delete-btn');
-    todoDiv.appendChild(deletedButton);
-    // APPEND TO TODOLIST
-    todoList.appendChild(todoDiv);
+    if(todo.active === true) {
+      const todoDiv = document.createElement('div');
+      // add class
+      todoDiv.classList.add('todo');
+      //cretae li
+      const newTodo =document.createElement('li');
+      newTodo.innerText = todo;
+      newTodo.classList.add('todo-item');
+      newTodo.classList.add('completed');
+      todoDiv.appendChild(newTodo);
+      // cocheck mark button
+      const completedButton = document.createElement('button');
+      completedButton.innerText = '+';
+      completedButton.classList.add('complete-btn');
+      todoDiv.appendChild(completedButton);
+      const deletedButton = document.createElement('button');
+      deletedButton.innerText = '-';
+      deletedButton.classList.add('delete-btn');
+      todoDiv.appendChild(deletedButton);
+      // APPEND TO TODOLIST
+      todoList.appendChild(todoDiv);
+    } else {
+      const todoDiv = document.createElement('div');
+      // add class
+      todoDiv.classList.add('todo');
+      //cretae li
+      const newTodo =document.createElement('li');
+      newTodo.innerText = todo.name;
+      newTodo.classList.add('todo-item');
+      todoDiv.appendChild(newTodo);
+      // cocheck mark button
+      const completedButton = document.createElement('button');
+      completedButton.innerText = '+';
+      completedButton.classList.add('complete-btn');
+      todoDiv.appendChild(completedButton);
+      const deletedButton = document.createElement('button');
+      deletedButton.innerText = '-';
+      deletedButton.classList.add('delete-btn');
+      todoDiv.appendChild(deletedButton);
+      // APPEND TO TODOLIST
+      todoList.appendChild(todoDiv);
+    }
   })
 }
 
@@ -140,17 +164,20 @@ function removeLoacalTodos(todo) {
 }
 
 function isCheck() {
+  localStorage.clear();
   const todoItems = document.querySelectorAll('.todo');
   todoItems.forEach((item) =>{
     if(item.classList.contains('completed')) {
+      const item = document.querySelectorAll('.todo-item');
+      const itemText = item.value;
       const newItem = {
-        name: todoInput,
+        name: itemText,
         active: true,
       }
       saveLocalTodos(newItem);
     }else {
       const newItem = {
-        name: todoInput,
+        name: itemText,
         active: false
       }
       saveLocalTodos(newItem);
