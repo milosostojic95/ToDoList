@@ -138,3 +138,22 @@ function removeLoacalTodos(todo) {
   todos.splice(todos.indexOf(todoIndex),1);
   localStorage.setItem('todos', JSON.stringify(todos));
 }
+
+function isCheck() {
+  const todoItems = document.querySelectorAll('.todo');
+  todoItems.forEach((item) =>{
+    if(item.classList.contains('completed')) {
+      const newItem = {
+        name: todoInput,
+        active: true,
+      }
+      saveLocalTodos(newItem);
+    }else {
+      const newItem = {
+        name: todoInput,
+        active: false
+      }
+      saveLocalTodos(newItem);
+    }
+  })
+}
