@@ -168,16 +168,14 @@ function isCheck() {
   const todoItems = document.querySelectorAll('.todo');
   todoItems.forEach((item) =>{
     if(item.classList.contains('completed')) {
-      const item = document.querySelectorAll('.todo-item');
-      const itemText = item.value;
       const newItem = {
-        name: itemText,
+        name: item,
         active: true,
       }
       saveLocalTodos(newItem);
     }else {
       const newItem = {
-        name: itemText,
+        name: item,
         active: false
       }
       saveLocalTodos(newItem);
