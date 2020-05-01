@@ -105,6 +105,7 @@ function getTodos() {
   } else {
     todos = JSON.parse(localStorage.getItem('todos'));
   }
+  console.log(todos)
   todos.forEach((todo) => {
     if(todo.active === true) {
       const todoDiv = document.createElement('div');
@@ -112,7 +113,7 @@ function getTodos() {
       todoDiv.classList.add('todo');
       //cretae li
       const newTodo =document.createElement('li');
-      newTodo.innerText = todo;
+      newTodo.innerText = todo.name;
       newTodo.classList.add('todo-item');
       newTodo.classList.add('completed');
       todoDiv.appendChild(newTodo);
@@ -167,15 +168,16 @@ function isCheck() {
   localStorage.clear();
   const todoItems = document.querySelectorAll('.todo');
   todoItems.forEach((item) =>{
+    const itemText = item.firstChild.textContent;
     if(item.classList.contains('completed')) {
       const newItem = {
-        name: item,
+        name: itemText,
         active: true,
       }
       saveLocalTodos(newItem);
     }else {
       const newItem = {
-        name: item,
+        name: itemText,
         active: false
       }
       saveLocalTodos(newItem);
