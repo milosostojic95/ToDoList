@@ -18,15 +18,21 @@ function addTodo(event) {
   event.preventDefault();
   // create div
   const todoDiv = document.createElement('div');
+  // input value
+  const input = {
+    name: todoInput.value,
+    active: false
+  }
   // add class
   todoDiv.classList.add('todo');
   //cretae li
   const newTodo =document.createElement('li');
-  newTodo.innerText = todoInput.value;
+  newTodo.innerText = input.name;
   newTodo.classList.add('todo-item');
   todoDiv.appendChild(newTodo);
   // add todo to localstorage
-  saveLocalTodos(todoInput.value);
+
+  saveLocalTodos(input);
   // cocheck mark button
   const completedButton = document.createElement('button');
   completedButton.innerText = '+';
@@ -49,10 +55,11 @@ function deleteCheck(e) {
   if(item.classList.contains('delete-btn')) {
     const todo = item.parentElement;
     todo.classList.add('fall');
-    removeLoacalTodos(todo);
     todo.addEventListener('transitionend', () =>{
       todo.remove();
+      removeLocalItem();
     });
+
   }
   if(item.classList.contains('complete-btn')) {
     const todo = item.parentElement;
@@ -105,17 +112,17 @@ function getTodos() {
   } else {
     todos = JSON.parse(localStorage.getItem('todos'));
   }
-  console.log(todos)
   todos.forEach((todo) => {
     if(todo.active === true) {
       const todoDiv = document.createElement('div');
       // add class
       todoDiv.classList.add('todo');
+      //addd completed class
+      todoDiv.classList.add('completed');
       //cretae li
-      const newTodo =document.createElement('li');
+      const newTodo = document.createElement('li');
       newTodo.innerText = todo.name;
       newTodo.classList.add('todo-item');
-      newTodo.classList.add('completed');
       todoDiv.appendChild(newTodo);
       // cocheck mark button
       const completedButton = document.createElement('button');
@@ -151,6 +158,7 @@ function getTodos() {
     }
   })
 }
+/*
 
 function removeLoacalTodos(todo) {
   let todos;
@@ -159,10 +167,12 @@ function removeLoacalTodos(todo) {
   } else {
     todos = JSON.parse(localStorage.getItem('todos'));
   }
+
   const todoIndex = todo.children[0].innerText;
   todos.splice(todos.indexOf(todoIndex),1);
   localStorage.setItem('todos', JSON.stringify(todos));
 }
+*/
 
 function isCheck() {
   localStorage.clear();
@@ -176,6 +186,28 @@ function isCheck() {
       }
       saveLocalTodos(newItem);
     }else {
+      const newItem = {
+        name: itemText,
+        active: false
+      }
+      saveLocalTodos(newItem);
+    }
+  })
+}
+
+function removeLocalItem() {
+  localStorage.clear();
+  const todoItems = document.querySelectorAll('.todo');
+  todoItems.forEach((item) => {
+    const itemText = item.firstChild.textContent;
+    if(item.classList.contains('completed')) {
+      const newItem = {
+        name: itemText,
+        active: true,
+      }
+      saveLocalTodos(newItem);
+    }
+    else {
       const newItem = {
         name: itemText,
         active: false
