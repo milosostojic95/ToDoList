@@ -11,7 +11,11 @@ document.addEventListener('DOMContentLoaded', getTodos);
 todoButton.addEventListener('click',addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
-
+//
+const AddCheck = function(name,active) {
+  this.name = name;
+  this.active = active;
+}
 
 // Functions
 function addTodo(event) {
@@ -19,10 +23,8 @@ function addTodo(event) {
   // create div
   const todoDiv = document.createElement('div');
   // input value
-  const input = {
-    name: todoInput.value,
-    active: false
-  }
+  const input = new AddCheck(todoInput.value,false);
+  console.log(input);
   // add class
   todoDiv.classList.add('todo');
   //cretae li
@@ -180,16 +182,10 @@ function isCheck() {
   todoItems.forEach((item) =>{
     const itemText = item.firstChild.textContent;
     if(item.classList.contains('completed')) {
-      const newItem = {
-        name: itemText,
-        active: true,
-      }
+      const newItem = new AddCheck(itemText,true);
       saveLocalTodos(newItem);
     }else {
-      const newItem = {
-        name: itemText,
-        active: false
-      }
+      const newItem = new AddCheck(itemText,false)
       saveLocalTodos(newItem);
     }
   })
