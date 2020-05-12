@@ -197,17 +197,11 @@ function removeLocalItem() {
   todoItems.forEach((item) => {
     const itemText = item.firstChild.textContent;
     if(item.classList.contains('completed')) {
-      const newItem = {
-        name: itemText,
-        active: true,
-      }
+      const newItem = new AddCheck(itemText,true)
       saveLocalTodos(newItem);
     }
     else {
-      const newItem = {
-        name: itemText,
-        active: false
-      }
+      const newItem = new AddCheck(itemText,false)
       saveLocalTodos(newItem);
     }
   })
